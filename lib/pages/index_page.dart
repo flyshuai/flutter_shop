@@ -19,7 +19,7 @@ class _IndexPageState extends State<IndexPage> {
     BottomNavigationBarItem(icon: Icon(CupertinoIcons.profile_circled), title: Text('会员中心')),
   ];
 
-  final List tabBodies = [HomePage(), CategoryPage(), CartPage(), MemberPage()];
+  final List<Widget> tabBodies = [HomePage(), CategoryPage(), CartPage(), MemberPage()];
 
   int currentIndex = 0;
   var currentPage;
@@ -32,7 +32,7 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 1080,height:1334)..init(context);
+    ScreenUtil.instance = ScreenUtil(width: 1080,height:1534)..init(context);
     return Scaffold(
       backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
       bottomNavigationBar: BottomNavigationBar(
@@ -46,7 +46,10 @@ class _IndexPageState extends State<IndexPage> {
           });
         },
       ),
-      body: currentPage,
+      body: IndexedStack(
+        index: currentIndex,
+        children: tabBodies,
+      ),
     );
   }
 }

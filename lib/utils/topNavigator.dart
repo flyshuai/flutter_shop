@@ -27,7 +27,7 @@ class TopNavigator extends StatelessWidget {
       this.navigatorList.removeRange(10, this.navigatorList.length);
     }
     return Container(
-      height: ScreenUtil().setHeight(320),
+      height: ScreenUtil().setHeight(350),
       padding: EdgeInsets.all(3.0),
       child: GridView.count(
         crossAxisCount: 5,//每行5个
