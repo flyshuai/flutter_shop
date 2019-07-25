@@ -8,8 +8,8 @@ Future getHomePageContent() async {
   try {
     print('开始获取首页数据。。。。。');
     Dio dio = new Dio();
-//    dio.options.contentType =
-//        ContentType.parse('application/x-www-form-urlencoded');
+    dio.options.contentType =
+        ContentType.parse('application/x-www-form-urlencoded');
     var formData = {'lon': '115.02932', 'lat': '35.76189'};
     Response response =
         await dio.post(servicePath['homePageContent'], data: formData);
