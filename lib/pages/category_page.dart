@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/service/service_methods.dart';
+import 'dart:convert';
+import 'package:flutter_shop/model/category.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -8,6 +12,77 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('商品分类'),),
+      body: Container(
+        child: Row(
+          children: <Widget>[
+            _LeftCategoryNav()
+          ],
+        ),
+      )
+    );
+  }
+
+}
+
+//左侧大类导航
+class _LeftCategoryNav extends StatefulWidget {
+  @override
+  __LeftCategoryNavState createState() => __LeftCategoryNavState();
+}
+
+class __LeftCategoryNavState extends State<_LeftCategoryNav> {
+  
+  List list = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _getCategory();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: ScreenUtil().setWidth(200),
+      decoration: BoxDecoration(border: Border(right: BorderSide(width: 1.0,color: Colors.black12))),
+      child: ListView.builder(
+        itemBuilder: (context,index){
+          return _leftInkWell(index);
+        },
+        itemCount: list.length,
+      ),
+
+    );
+  }
+
+  
+  Widget _leftInkWell(int index){
+    return InkWell(
+      onTap: (){},
+      child: Container(
+        height: ScreenUtil().setHeight(120),
+        padding: EdgeInsets.only(left: 10.0,top: 20.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(bottom: BorderSide(width: 1.0,color: Colors.black12))
+        ),
+        child: Text(list[index].mallCategoryName,style: TextStyle(fontSize: 14.0),),
+      ),
+    );
+  }
+  
+  void _getCategory() async{
+    await request('getCategory').then((value){
+      var data = json.decode(value.toString());
+      CategoryModel categoryBigListModel = CategoryModel.fromJson(data);
+      
+      setState(() {
+        list = categoryBigListModel.data;
+      });
+//      categoryBigListModel.data.forEach((item)=>print(item.mallCategoryName));
+    });
   }
 }

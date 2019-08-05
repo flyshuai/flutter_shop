@@ -14,7 +14,7 @@ class _HotGoodsState extends State<HotGoods> {
     var formData = {
       'page':1
     };
-    getHomePageContent('homePageBelowConten',formData: formData).then((value){
+    request('homePageBelowConten',formData: formData).then((value){
       print(value);
     });
   }
