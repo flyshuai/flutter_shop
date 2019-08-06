@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage>
     _getHomePageContent =
         request('homePageContent', formData: formData);
 
-
+    _getHotGoods();
     super.initState();
   }
 
