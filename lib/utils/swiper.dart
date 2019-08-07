@@ -1,6 +1,7 @@
 //首页轮播组件
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/routers/application.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class SwiperDiy extends StatelessWidget {
@@ -22,7 +23,10 @@ class SwiperDiy extends StatelessWidget {
       child: Swiper(
         itemCount: swiperDateList.length,
         itemBuilder: (BuildContext context, int index) {
-          return Image.network("${swiperDateList[index]['image']}");
+          return InkWell(
+            onTap: ()=>Application.router.navigateTo(context, '/details?id=${swiperDateList[index]['goodsId']}'),
+            child: Image.network("${swiperDateList[index]['image']}"),
+          );
         },
         pagination: SwiperPagination(),
         autoplay: true,
