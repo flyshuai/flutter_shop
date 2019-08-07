@@ -337,7 +337,6 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
       'categorySubId': Provide.value<ChildCategory>(context).subId,
       'page': Provide.value<ChildCategory>(context).page
     };
-    print(data);
     await request('getMallGoods', formData: data).then((val) {
       var data = json.decode(val.toString());
 

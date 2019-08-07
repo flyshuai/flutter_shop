@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/routers/application.dart';
 import 'package:flutter_shop/service/service_methods.dart';
-import 'package:flutter_shop/utils/adBanner.dart';
-import 'package:flutter_shop/utils/floor.dart';
-import 'package:flutter_shop/utils/leaderPhone.dart';
-import 'package:flutter_shop/utils/recommend.dart';
-import 'package:flutter_shop/utils/swiper.dart';
-import 'package:flutter_shop/utils/topNavigator.dart';
+import 'package:flutter_shop/pages/home_page/adBanner.dart';
+import 'package:flutter_shop/pages/home_page/floor.dart';
+import 'package:flutter_shop/pages/home_page/leaderPhone.dart';
+import 'package:flutter_shop/pages/home_page/recommend.dart';
+import 'package:flutter_shop/pages/home_page/swiper.dart';
+import 'package:flutter_shop/pages/home_page/topNavigator.dart';
 import 'dart:convert';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 

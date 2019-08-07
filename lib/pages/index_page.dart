@@ -21,7 +21,7 @@ class _IndexPageState extends State<IndexPage> {
     BottomNavigationBarItem(icon: Icon(CupertinoIcons.profile_circled), title: Text('会员中心')),
   ];
 
-  final List<Widget> tabBodies = [HomePage(), CategoryPage(), FlutterProvideDemoPage(), MemberPage()];
+  final List<Widget> tabBodies = [HomePage(), CategoryPage(), CartPage(), MemberPage()];
 
   int currentIndex = 0;
   var currentPage;
