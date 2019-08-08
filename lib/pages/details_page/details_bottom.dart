@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/provide/cart.dart';
+import 'package:flutter_shop/provide/cartProvide.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_shop/provide/details_info.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,17 +19,40 @@ class DetailsBottom extends StatelessWidget {
       width: ScreenUtil().setWidth(1100),
       child: Row(
         children: <Widget>[
-          InkWell(
-            onTap: () {},
-            child: Container(
-              width: ScreenUtil().setWidth(200),
-              alignment: Alignment.center,
-              child: Icon(Icons.shopping_cart, size: 35, color: Colors.red),
-            ),
+          Stack(
+            children: <Widget>[
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: ScreenUtil().setWidth(200),
+                  alignment: Alignment.center,
+                  child: Icon(Icons.shopping_cart, size: 35, color: Colors.red),
+                ),
+              ),
+              Provide<CartProvide>(
+                builder: (context,child,val){
+                  int goodsCount = Provide.value<CartProvide>(context).allGoodsCount;
+                  return Positioned(
+                    top: 0.0,
+                    right: 10.0,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(6, 3, 6, 3),
+                      decoration: BoxDecoration(
+                        color: Colors.pink,
+                        border: Border.all(width: 2,color: Colors.white),
+                        borderRadius: BorderRadius.circular(12.0)
+                      ),
+                      child: Text(goodsCount.toString(),style: TextStyle(color: Colors.white,fontSize: ScreenUtil().setSp(32)),),
+                    ),
+                  );
+                },
+              )
+            ],
           ),
           InkWell(
             onTap: () async {
-             await Provide.value<CartProvide>(context).save(goodsId, goodsName, count, price, images);
+              await Provide.value<CartProvide>(context)
+                  .save(goodsId, goodsName, count, price, images);
             },
             child: Container(
               width: ScreenUtil().setWidth(450),
@@ -43,7 +66,9 @@ class DetailsBottom extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () async {await Provide.value<CartProvide>(context).remove();},
+            onTap: () async {
+              await Provide.value<CartProvide>(context).remove();
+            },
             child: Container(
               width: ScreenUtil().setWidth(450),
               height: ScreenUtil().setHeight(100),
